@@ -36,7 +36,7 @@ inputs:
         default: 'helm/'
 runs:
     using: 'docker'
-    image: 'peymanmo/eks-helm-deploy'
+    image: 'docker://peymanmo/eks-helm-deploy:v2'
     env:
         AWS_REGION: ${{ inputs.aws-region }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
