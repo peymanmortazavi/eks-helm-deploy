@@ -6,6 +6,9 @@ aws eks \
     update-kubeconfig --name ${CLUSTER_NAME:-blackbox} \
     --role-arn=${CLUSTER_ROLE_ARN:-arn:aws:iam::118196747825:role/blackbox-eks-admin}
 
+# Helm Dependency Update
+helm dependency update ${DEPLOY_CHART_PATH:-helm/}
+
 # Helm Deployment
 UPGRADE_COMMAND="helm upgrade --wait --atomic --install"
 for config_file in ${DEPLOY_CONFIG_FILES//,/ }
