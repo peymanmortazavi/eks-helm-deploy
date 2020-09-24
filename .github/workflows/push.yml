@@ -1,0 +1,26 @@
+name: 'Push image to Docker Hub'
+
+on:
+    push:
+        tags:
+            - 'v[0-9]+'
+
+jobs:
+    update-image:
+        name: 'Update the docker image used in the github action.'
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Login to DockerHub
+              uses: docker/login-action@v1 
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+            - name: Build and push Docker images
+              uses: docker/build-push-action@v1.1.1
+              with:
+                  context: .
+                  file: ./Dockerfile
+                  push: true
+                  tags: peymanmo/eks-helm-deploy:latest
+                  platforms: linux/amd64,linux/386
