@@ -1,6 +1,9 @@
 # action.yml
 name: 'EKS Helm Deploy'
 description: 'Deploy a helm chart to EKS cluster.'
+branding:
+    icon: anchor
+    color: yellow
 inputs:
     aws-secret-access-key:
         description: 'AWS credentials used to login to eks.'
