@@ -36,6 +36,14 @@ Kubernetes namespace to use.
 
 Comma separates list of value set for helms. e.x: key1=value1,key2=value2
 
+### `name`
+
+The name of the helm deploy.
+
+### `chart-path`
+
+The path to the chart. (defaults to `helm/`)
+
 ## Example usage
 
 ```yaml

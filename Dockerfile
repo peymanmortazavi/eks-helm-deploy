@@ -2,6 +2,8 @@ FROM python:3.8-slim-buster
 
 COPY deploy.sh /usr/local/bin/deploy
 
+WORKDIR /github/workspace
+
 # Install the toolset.
 RUN apt -y update && apt -y install curl \
     && pip install awscli \
