@@ -3,7 +3,7 @@
 # Login to Kubernetes Cluster.
 aws eks \
     --region ${AWS_REGION:-us-west-2} \
-    update-kubeconfig --name ${CLUSTER_NAME:-blackbox}
+    update-kubeconfig --name ${CLUSTER_NAME:-blackbox} \
     --role-arn=${CLUSTER_ROLE_ARN:-arn:aws:iam::118196747825:role/blackbox-eks-admin}
 
 # Helm Deployment
