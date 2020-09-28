@@ -2,9 +2,9 @@
 
 # Login to Kubernetes Cluster.
 aws eks \
-    --region ${AWS_REGION:-us-west-2} \
-    update-kubeconfig --name ${CLUSTER_NAME:-blackbox} \
-    --role-arn=${CLUSTER_ROLE_ARN:-arn:aws:iam::118196747825:role/blackbox-eks-admin}
+    --region ${AWS_REGION} \
+    update-kubeconfig --name ${CLUSTER_NAME} \
+    --role-arn=${CLUSTER_ROLE_ARN}
 
 # Helm Dependency Update
 helm dependency update ${DEPLOY_CHART_PATH:-helm/}
