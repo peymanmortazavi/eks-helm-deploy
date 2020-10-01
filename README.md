@@ -56,4 +56,5 @@ with:
   config-files: .github/values/dev.yaml
   namespace: dev
   values: key1=value1,key2=value2
+  name: deploy_name
 ```
