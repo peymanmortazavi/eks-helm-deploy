@@ -10,7 +10,7 @@ aws eks \
 helm dependency update ${DEPLOY_CHART_PATH:-helm/}
 
 # Helm Deployment
-UPGRADE_COMMAND="helm upgrade --wait --atomic --install"
+UPGRADE_COMMAND="helm upgrade --wait --atomic --install --timeout ${TIMEOUT}"
 for config_file in ${DEPLOY_CONFIG_FILES//,/ }
 do
     UPGRADE_COMMAND="${UPGRADE_COMMAND} -f ${config_file}"
