@@ -41,6 +41,13 @@ inputs:
         description: 'Timeout for the job.'
         required: true
         default: 5m0s
+    dry-run:
+        description: 'Simulate an upgrade.'
+        required: false
+    debug:
+        description: 'Enable verbose output'
+        required: false
+
 runs:
     using: 'docker'
     image: 'docker://peymanmo/eks-helm-deploy:v2'
@@ -50,9 +57,13 @@ runs:
         AWS_ACCESS_KEY_ID: ${{ inputs.aws-access-key-id }}
         CLUSTER_NAME: ${{ inputs.cluster-name }}
         CLUSTER_ROLE_ARN: ${{ inputs.cluster-role-arn }}
+        DEBUG: ${{ inputs.debug }}
         DEPLOY_CONFIG_FILES: ${{ inputs.config-files }}
         DEPLOY_NAMESPACE: ${{ inputs.namespace }}
         DEPLOY_VALUES: ${{ inputs.values }}
         DEPLOY_NAME: ${{ inputs.name }}
         DEPLOY_CHART_PATH: ${{ inputs.chart-path }}
+        DRY_RUN: ${{ inputs.dry-run }}
         TIMEOUT: ${{ inputs.timeout }}
+       
+
