@@ -3,8 +3,7 @@
 # Login to Kubernetes Cluster.
 aws eks \
     --region ${AWS_REGION} \
-    update-kubeconfig --name ${CLUSTER_NAME} \
-    --role-arn=${CLUSTER_ROLE_ARN}
+    update-kubeconfig --name ${CLUSTER_NAME}
 
 # Helm Dependency Update
 helm dependency update ${DEPLOY_CHART_PATH:-helm/}
