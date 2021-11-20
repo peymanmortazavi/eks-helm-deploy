@@ -21,13 +21,15 @@ fi
 if [ -n "$DEPLOY_VALUES" ]; then
     UPGRADE_COMMAND="${UPGRADE_COMMAND} --set ${DEPLOY_VALUES}"
 fi
-echo "dry run is $DRY_RUN, and debug is $DEBUG"
 if [ "$DEBUG" = true ]; then
     UPGRADE_COMMAND="${UPGRADE_COMMAND} --debug"
 fi
 if [ "$DRY_RUN" = true ]; then
     UPGRADE_COMMAND="${UPGRADE_COMMAND} --dry-run"
 fi
+kubectl get svc
+kubectl get pods -A
+cat ~/.kube/config
 UPGRADE_COMMAND="${UPGRADE_COMMAND} ${DEPLOY_NAME} ${DEPLOY_CHART_PATH:-helm/}"
 echo "Executing: ${UPGRADE_COMMAND}"
 ${UPGRADE_COMMAND}
