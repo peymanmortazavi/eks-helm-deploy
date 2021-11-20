@@ -22,10 +22,10 @@ if [ -n "$DEPLOY_VALUES" ]; then
     UPGRADE_COMMAND="${UPGRADE_COMMAND} --set ${DEPLOY_VALUES}"
 fi
 echo "dry run is $DRY_RUN, and debug is $DEBUG"
-if [ "$DEBUG" = "true" ]; then
+if [ "$DEBUG" = true ]; then
     UPGRADE_COMMAND="${UPGRADE_COMMAND} --debug"
 fi
-if [ "$DRY_RUN" = "true" ]; then
+if [ "$DRY_RUN" = true ]; then
     UPGRADE_COMMAND="${UPGRADE_COMMAND} --dry-run"
 fi
 UPGRADE_COMMAND="${UPGRADE_COMMAND} ${DEPLOY_NAME} ${DEPLOY_CHART_PATH:-helm/}"
