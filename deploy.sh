@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 # Login to Kubernetes Cluster.
-aws eks \
-    --region ${AWS_REGION} \
-    update-kubeconfig --name ${CLUSTER_NAME}
+UPDATE_KUBECONFIG_COMMAND="aws eks --region ${AWS_REGION} update-kubeconfig --name ${CLUSTER_NAME}"
+if [ -n "$CLUSTER_ROLE_ARN" ]; then
+    UPDATE_KUBECONFIG_COMMAND="${UPDATE_KUBECONFIG_COMMAND} --role-arn=${CLUSTER_ROLE_ARN}"
+fi
+${UPDATE_KUBECONFIG_COMMAND}
 
 # Helm Dependency Update
 helm dependency update ${DEPLOY_CHART_PATH:-helm/}
@@ -26,9 +28,6 @@ fi
 if [ "$DRY_RUN" = true ]; then
     UPGRADE_COMMAND="${UPGRADE_COMMAND} --dry-run"
 fi
-kubectl get svc
-kubectl get pods -A
-cat ~/.kube/config
 UPGRADE_COMMAND="${UPGRADE_COMMAND} ${DEPLOY_NAME} ${DEPLOY_CHART_PATH:-helm/}"
 echo "Executing: ${UPGRADE_COMMAND}"
 ${UPGRADE_COMMAND}
