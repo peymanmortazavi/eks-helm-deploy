@@ -1,6 +1,6 @@
-# EKS helm deploy GitHub action
+# EKS Helm Deploy GitHub Action
 
-This action uses aws cli to login to EKS and deploy a helm chart.
+This GitHub action uses AWS CLI to login to EKS and deploy a helm chart.
 
 ## Inputs
 Input parameters allow you to specify data that the action expects to use during runtime.
