@@ -18,3 +18,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: peymanmo/eks-helm-deploy
           tag_with_ref: true
+          tags: latest
