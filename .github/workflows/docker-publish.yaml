@@ -8,12 +8,6 @@ on:
     branches:
       - main
 
-env:
-  repository: 761633760558.dkr.ecr.us-west-2.amazonaws.com/eks-helm-deploy
-  iam-role-to-assume: arn:aws:iam::761633760558:role/RaydiantGithubActionsEcr-production
-  iam-role-session-name: github-actions-eks-helm-deploy-build
-  push: ${{ github.event_name != 'pull_request' }}
-
 jobs:
   push_to_registry:
     name: Push Docker image
@@ -26,7 +20,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ env.repository }}
+          images: 761633760558.dkr.ecr.us-west-2.amazonaws.com/eks-helm-deploy
           tags: |
             type=ref,event=branch,suffix=-{{sha}}
             type=ref,event=pr,suffix=-{{sha}}
@@ -35,12 +29,12 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{ env.iam-role-to-assume }}
-          role-session-name: ${{ env.iam-role-session-name }}
+          role-to-assume: arn:aws:iam::761633760558:role/RaydiantGithubActionsEcr-production
+          role-session-name: github-actions-eks-helm-deploy-build
           aws-region: us-west-2
 
       - name: Login to Amazon ECR
-        if: ${{ env.push }}
+        if: ${{ github.event_name != 'pull_request' }}
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
@@ -55,7 +49,7 @@ jobs:
         with:
           context: .
           file: docker/Dockerfile.pubsub
-          push: ${{ env.push }}
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
