@@ -38,7 +38,7 @@ jobs:
           aws-region: us-west-2
 
       - name: Login to Amazon ECR
-        #if: ${{ github.event_name != 'pull_request' }}
+        if: ${{ github.event_name != 'pull_request' }}
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
@@ -52,8 +52,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          push: true
-          #push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
