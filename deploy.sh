@@ -12,7 +12,7 @@ helm dependency update ${DEPLOY_CHART_PATH:-helm/}
 
 # Helm Deployment
 if [ "$DIFF" = true ]; then
-    UPGRADE_COMMAND="helm diff upgrade --wait --atomic --install --timeout ${TIMEOUT}"
+    UPGRADE_COMMAND="helm diff upgrade --color --wait --atomic --install --timeout ${TIMEOUT}"
 else
     UPGRADE_COMMAND="helm upgrade --wait --atomic --install --timeout ${TIMEOUT}"
 fi
