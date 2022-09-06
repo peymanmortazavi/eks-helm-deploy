@@ -26,8 +26,8 @@ jobs:
         with:
           images: 761633760558.dkr.ecr.us-west-2.amazonaws.com/eks-helm-deploy
           tags: |
-            type=ref,event=branch,suffix=-{{sha}}
-            type=ref,event=pr,suffix=-{{sha}}
+            type=ref,event=branch
+            type=ref,event=pr
             type=ref,event=tag
 
       - name: Configure AWS credentials
