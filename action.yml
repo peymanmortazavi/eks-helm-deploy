@@ -44,13 +44,16 @@ inputs:
     dry-run:
         description: 'Simulate an upgrade.'
         required: false
+    diff:
+        description: "Run Helm Diff"
+        required: false
     debug:
         description: 'Enable verbose output'
         required: false
 
 runs:
     using: 'docker'
-    image: 'docker://peymanmo/eks-helm-deploy:latest'
+    image: 'docker://761633760558.dkr.ecr.us-west-2.amazonaws.com/eks-helm-deploy:latest'
     env:
         AWS_REGION: ${{ inputs.aws-region }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
@@ -64,6 +67,7 @@ runs:
         DEPLOY_NAME: ${{ inputs.name }}
         DEPLOY_CHART_PATH: ${{ inputs.chart-path }}
         DRY_RUN: ${{ inputs.dry-run }}
+        DIFF: ${{ inputs.diff }}
         TIMEOUT: ${{ inputs.timeout }}
        
 
