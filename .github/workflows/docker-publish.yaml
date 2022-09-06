@@ -12,6 +12,10 @@ jobs:
   push_to_registry:
     name: Push Docker image
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Required to access IAM Role with OIDC
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
