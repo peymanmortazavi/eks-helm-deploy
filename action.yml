@@ -53,7 +53,7 @@ inputs:
 
 runs:
     using: 'docker'
-    image: 'docker://761633760558.dkr.ecr.us-west-2.amazonaws.com/eks-helm-deploy:latest'
+    image: 'docker://ghcr.io/mirainc/eks-helm-deploy:main'
     env:
         AWS_REGION: ${{ inputs.aws-region }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
