@@ -3,6 +3,7 @@ FROM python:3.8-slim-buster
 COPY deploy.sh /usr/local/bin/deploy
 
 ENV HELM_PLUGINS=/var/lib/helm/plugins
+ENV HELM_DIFF_IGNORE_UNKNOWN_FLAGS=true
 
 # Install the toolset.
 RUN apt -y update && apt -y install curl git \
