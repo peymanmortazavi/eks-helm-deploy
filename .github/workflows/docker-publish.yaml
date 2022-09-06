@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  push_to_registry:
+  build:
     name: Push Docker image
     runs-on: ubuntu-latest
     permissions:
@@ -52,7 +52,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: docker/Dockerfile.pubsub
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
