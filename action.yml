@@ -69,5 +69,5 @@ runs:
         DRY_RUN: ${{ inputs.dry-run }}
         DIFF: ${{ inputs.diff }}
         TIMEOUT: ${{ inputs.timeout }}
-       
+        UNINSTALL: ${{ inputs.uninstall }}
 
